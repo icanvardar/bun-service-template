@@ -47,7 +47,7 @@ class Server {
 
         this.app.onError((err, c) => {
             console.error(`${err}`);
-            return c.text("Custom Error Message", StatusCode.InternalServerError);
+            return c.text("An error occured!", StatusCode.InternalServerError);
         });
     }
 }
