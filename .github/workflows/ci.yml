@@ -1,0 +1,33 @@
+name: Service Template CI
+
+on:
+  push:
+    branches:
+      - main # Execute on every push
+      - issue-* # Execute on issue pushes
+  pull_request:
+    branches:
+      - main
+      - issue-*
+  workflow_dispatch: # Execute on manual trigger
+
+jobs:
+  checkout-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # Checkout repo
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: npx lint-staged
+        with:
+            bun-version: latest # Use latest bun version
+  build-and-start:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: oven-sh/setup-bun@v1 # Setup bun
+        with:
+            bun-version: latest # Use latest bun version
+      - run: bun install # Install dependencies
+      - run: bun build # Build project
+      - run: bun run start # Start the project from entrypoint
