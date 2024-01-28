@@ -1,5 +1,5 @@
 import type { Context } from "hono";
-import { FooService } from "../services";
+import { FooService } from "@services";
 
 const service = new FooService();
 

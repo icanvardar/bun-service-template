@@ -1,5 +1,5 @@
-import BaseRoute from "../shared/base-route";
-import { FooController } from "../controllers";
+import BaseRoute from "@shared/base-route";
+import { FooController } from "@controllers";
 
 const controller = new FooController();
 
