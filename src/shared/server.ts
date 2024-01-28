@@ -4,7 +4,9 @@ import { cors } from "hono/cors";
 import { prettyJSON } from "hono/pretty-json";
 import { logger as honoLogger } from "hono/logger";
 
+import { configs } from "@config";
 import { StatusCode } from "@constants";
+
 import logger from "./logger";
 
 export const customLogger = (message: string, ...rest: string[]) => {
@@ -15,7 +17,7 @@ class Server {
     public app: Hono;
 
     constructor(routes: IBaseRoute[]) {
-        this.app = new Hono();
+        this.app = new Hono().basePath(configs.basePath);
 
         this.initializeMiddlewares();
         this.initializeRoutes(routes);
