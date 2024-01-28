@@ -3,7 +3,7 @@ import { z } from "zod";
 export const appConfigSchema = z.object({
     env: z.enum(["development", "production", "ci"]),
     port: z.number().default(3000),
-    basePath: z.string(),
+    basePath: z.string().default(""),
 });
 
 export type AppConfig = z.infer<typeof appConfigSchema>;

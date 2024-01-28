@@ -2,6 +2,8 @@ name: "CI"
 
 env:
   NODE_ENV: "ci"
+  PORT: ${{ secrets.PORT }}
+  BASE_PATH: ${{ secrets.BASE_PATH }}
 
 on:
   workflow_dispatch:
