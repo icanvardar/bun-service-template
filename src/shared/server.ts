@@ -9,13 +9,13 @@ import { StatusCode } from "@constants";
 
 import logger from "./logger";
 
-export const customLogger = (message: string, ...rest: string[]) => {
-    logger.info(`${message} ${rest.toString()}`);
-};
-
 class Server {
     public app: Hono;
 
+    /**
+     * Only accepts routes which are derived from BaseRoute class
+     * @param routes indicates that array of route classes
+     */
     constructor(routes: IBaseRoute[]) {
         this.app = new Hono().basePath(configs.basePath);
 
@@ -23,6 +23,9 @@ class Server {
         this.initializeRoutes(routes);
     }
 
+    /**
+     * Initializes global middlewares
+     */
     private initializeMiddlewares() {
         this.app.use("*", prettyJSON());
         this.app.use("*", cors());
@@ -43,9 +46,18 @@ class Server {
                 xXssProtection: "1; mode=block",
             }),
         );
-        this.app.use("*", honoLogger(customLogger));
+        this.app.use(
+            "*",
+            honoLogger((message: string, ...rest: string[]) => {
+                logger.info(`${message} ${rest.toString()}`);
+            }),
+        );
     }
 
+    /**
+     * Initializes routes
+     * @param routes indicates that routes which are derived from BaseRoute class
+     */
     private initializeRoutes(routes: IBaseRoute[]) {
         routes.forEach((route) => {
             this.app.route(route.basePath, route.router);
