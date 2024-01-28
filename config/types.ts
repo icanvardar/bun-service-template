@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const appConfigSchema = z.object({
-    env: z.enum(["development", "production", "ci"]),
+    env: z.enum(["development", "production", "ci", "test"]),
     port: z.number().default(3000),
     basePath: z.string().default(""),
 });

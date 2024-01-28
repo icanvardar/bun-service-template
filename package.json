@@ -5,12 +5,16 @@
     "devDependencies": {
         "@babel/eslint-parser": "^7.23.9",
         "@types/bun": "latest",
+        "@types/chai": "^4.3.11",
+        "@types/mocha": "^10.0.6",
         "@typescript-eslint/eslint-plugin": "^6.19.1",
+        "chai": "^5.0.3",
         "copyfiles": "^2.4.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-node": "^11.1.0",
         "husky": "^9.0.6",
         "lint-staged": "^15.2.0",
+        "mocha": "^10.2.0",
         "prettier": "^3.2.4"
     },
     "peerDependencies": {
@@ -21,6 +25,7 @@
         "start:ci": "bun run ./out/index.js",
         "start:dev": "export NODE_ENV=development && bun index.ts",
         "start:watch": "export NODE_ENV=development && bun --watch index.ts",
+        "test": "export NODE_ENV=test && bun test",
         "build": "bun run build.mjs",
         "clean": "rm -rf ./out ./node_modules bun.lockb",
         "prepare": "husky"
