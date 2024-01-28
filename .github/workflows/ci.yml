@@ -1,0 +1,60 @@
+name: "CI"
+
+env:
+  NODE_ENV: "ci"
+  PORT: ${{ secrets.PORT }}
+  BASE_PATH: ${{ secrets.BASE_PATH }}
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - "main"
+      - "issue-*"
+
+jobs:
+  lint:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout the repo"
+        uses: actions/checkout@v4
+
+      - name: "Install bun"
+        uses: oven-sh/setup-bun@v1
+      
+      - name: "Lint the code"
+        run: "npx lint-staged"
+
+  build-and-start:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout the repo"
+        uses: "actions/checkout@v4"
+
+      - name: "Install bun"
+        uses: "oven-sh/setup-bun@v1"
+      
+      - name: "Install the dependencies"
+        run: "bun install"
+
+      - name: "Build the project"
+        run: "bun run build"
+
+      - name: "Start the project"
+        run: "bun run start:ci"
+
+  test:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout the repo"
+        uses: "actions/checkout@v4"
+      
+      - name: "Install bun"
+        uses: "oven-sh/setup-bun@v1"
+      
+      - name: "Install the dependencies"
+        run: "bun install"
+
+      - name: "Test project"
+        run: "bun run test"

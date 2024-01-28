@@ -1,22 +1,42 @@
 {
-  "compilerOptions": {
-    "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
+    "compilerOptions": {
+        /* Compiling */
+        "lib": ["ESNext"],
+        "target": "ESNext",
+        "module": "ESNext",
+        "allowJs": true,
+        "experimentalDecorators": true,
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "verbatimModuleSyntax": true,
+        "noEmit": true,
 
-    /* Linting */
-    "skipLibCheck": true,
-    "strict": true,
-    "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true
-  }
+        /* Linting */
+        "skipLibCheck": true,
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+
+        /* Module declaration */
+        "moduleDetection": "force",
+        "declaration": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+
+        /* Path aliases */
+        "paths": {
+            "@config": ["./config"],
+            "@constants": ["./src/constants"],
+            "@controllers": ["./src/controllers"],
+            "@docs/*": ["./docs/*"],
+            "@middlewares": ["./src/middlewares"],
+            "@routes": ["./src/routes"],
+            "@services": ["./src/services"],
+            "@shared/*": ["./src/shared/*"],
+            "@utils/*": ["./src/utils/*"]
+        }
+    },
+    "exclude": ["./plugins.ts"]
 }
