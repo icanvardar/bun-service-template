@@ -21,10 +21,7 @@
         "start:dev": "export NODE_ENV=test && bun index.ts",
         "start:watch": "export NODE_ENV=dev && bun --watch index.ts",
         "build": "bun run build.mjs",
-        "clean": "rm -rf ./out",
-        "wipeout": "rm -rf ./out ./node_modules bun.lockb",
-        "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-        "format:watch": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
+        "clean": "rm -rf ./out ./node_modules bun.lockb",
         "prepare": "husky"
     },
     "lint-staged": {
@@ -34,5 +31,8 @@
         "*.{json,js,ts,jsx,tsx,html}": [
             "prettier --config .prettierrc 'src/**/*.ts' --write"
         ]
+    },
+    "dependencies": {
+        "hono": "^3.12.8"
     }
 }
