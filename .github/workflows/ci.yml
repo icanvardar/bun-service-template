@@ -1,40 +1,39 @@
-name: Bun Service Template CI
+name: "CI"
 
 on:
+  workflow_dispatch:
+  pull_request:
   push:
     branches:
-      - main # Execute on every push
-      - issue-* # Execute on issue pushes
-  pull_request:
-    branches:
-      - main
-      - issue-*
-  workflow_dispatch: # Execute on manual trigger
+      - "main"
+      - "issue-*"
 
 jobs:
-  checkout-repo:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 # Checkout repo
   linter:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-          working-directory: ../../
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: oven-sh/setup-bun@v1 # Setup bun
-        with:
-            bun-version: latest # Use latest bun version
-      - run: npx lint-staged
+      - name: "Checkout the repo"
+        uses: actions/checkout@v4
+
+      - name: "Install bun"
+        uses: oven-sh/setup-bun@v1
+      
+      - name: "Lint the code"
+        run: "npx lint-staged"
   build-and-start:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-          working-directory: ../../
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: oven-sh/setup-bun@v1 # Setup bun
-        with:
-            bun-version: latest # Use latest bun version
-      - run: bun install # Install dependencies
-      - run: bun build # Build project
-      - run: bun run start # Start the project from entrypoint
+      - name: "Checkout the repo"
+        uses: "actions/checkout@v4"
+
+      - name: "Install bun"
+        uses: "oven-sh/setup-bun@v1"
+      
+      - name: "Install the dependencies"
+        run: "bun install"
+
+      - name: "Build the project"
+        run: "bun run build"
+
+      - name: "Start the project"
+        run: "bun run start"
