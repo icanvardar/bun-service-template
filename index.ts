@@ -10,4 +10,10 @@ if (configs.env == "ci") {
     process.exit(0);
 }
 
-export default server.app;
+export default {
+    port: configs.port,
+    fetch: server.app.fetch,
+} as {
+    port: number;
+    fetch: () => Response | Promise<Response>;
+};
