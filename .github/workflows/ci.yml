@@ -40,4 +40,4 @@ jobs:
         run: "bun run build"
 
       - name: "Start the project"
-        run: "bun run start"
+        run: "bun run start:ci"
