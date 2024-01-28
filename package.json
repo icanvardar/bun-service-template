@@ -32,7 +32,7 @@
             "eslint --quiet --fix"
         ],
         "*.{json,js,ts,jsx,tsx,html}": [
-            "bun run format"
+            "prettier --config .prettierrc 'src/**/*.ts' --write"
         ]
     }
 }
