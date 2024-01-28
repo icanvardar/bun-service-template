@@ -17,7 +17,7 @@
         "typescript": "^5.0.0"
     },
     "scripts": {
-        "start": "export NODE_ENV=production && node ./out/index.js",
+        "start": "export NODE_ENV=production && bun run ./out/index.js",
         "start:dev": "export NODE_ENV=development && bun index.ts",
         "start:watch": "export NODE_ENV=development && bun --watch index.ts",
         "build": "bun run build.mjs",
