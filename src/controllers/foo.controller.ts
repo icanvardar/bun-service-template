@@ -2,22 +2,25 @@
 /*                             EXAMPLE CONTROLLER                             */
 /* -------------------------------------------------------------------------- */
 
-import type { Context } from "hono";
 import { FooService } from "@services";
+import { Controller, Get, Route, SuccessResponse } from "tsoa";
 
 const service = new FooService();
 
 /**
  * A controller class that represents bridge between router and service.
  */
-class Foo {
+@Route("/foo")
+class Foo extends Controller {
     /**
      *
      * @param c indicates server context
      * @returns response to client
      */
-    async foo(c: Context): Promise<Response> {
-        return c.text(await service.foo());
+    @SuccessResponse("201", "Created")
+    @Get("/")
+    async foo(): Promise<string> {
+        return await service.foo();
     }
 }
 

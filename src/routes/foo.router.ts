@@ -4,6 +4,7 @@
 
 import BaseRoute from "@shared/base-route";
 import { FooController } from "@controllers";
+import type { Context } from "hono";
 
 const controller = new FooController();
 
@@ -24,7 +25,11 @@ class Foo extends BaseRoute {
      * Initializes each predefined routes.
      */
     private initializeRoutes() {
-        this.router.get("/", controller.foo);
+        this.router.get("/", this.foo);
+    }
+
+    async foo(c: Context): Promise<Response> {
+        return c.text(await controller.foo());
     }
 }
 

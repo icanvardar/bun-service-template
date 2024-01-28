@@ -5,6 +5,7 @@
         "target": "ESNext",
         "module": "ESNext",
         "allowJs": true,
+        "experimentalDecorators": true,
 
         /* Bundler mode */
         "moduleResolution": "bundler",

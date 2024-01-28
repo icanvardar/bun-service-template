@@ -9,6 +9,10 @@ import { StatusCode } from "@constants";
 
 import logger from "./logger";
 
+import { swaggerUI } from "@hono/swagger-ui";
+
+import swaggerDefinitions from "../../docs/swagger.json";
+
 /**
  * A server class that configures HTTP server.
  */
@@ -30,7 +34,7 @@ class Server {
     /**
      *
      * @param routes indicates that array of route classes
-     * @returns
+     * @returns server class
      */
     public static getInstance(routes: IBaseRoute[]): Server {
         if (!Server.instance) {
@@ -50,16 +54,9 @@ class Server {
             "*",
             secureHeaders({
                 xPermittedCrossDomainPolicies: "none",
-                crossOriginEmbedderPolicy: "require-corp",
-                crossOriginOpenerPolicy: "same-origin",
-                crossOriginResourcePolicy: "same-origin",
                 xFrameOptions: "deny",
                 xContentTypeOptions: "nosniff",
-                referrerPolicy: "origin-when-cross-origin",
                 strictTransportSecurity: "max-age=63072000; includeSubDomains; preload",
-                contentSecurityPolicy: {
-                    defaultSrc: ["self"],
-                },
                 xXssProtection: "1; mode=block",
             }),
         );
@@ -69,6 +66,12 @@ class Server {
                 logger.info(`${message} ${rest.toString()}`);
             }),
         );
+
+        this.app.get("/doc", (c) => {
+            return c.json(swaggerDefinitions);
+        });
+
+        this.app.get("/ui", swaggerUI({ url: "/api/doc" }));
     }
 
     /**
