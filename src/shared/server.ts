@@ -9,6 +9,9 @@ import { StatusCode } from "@constants";
 
 import logger from "./logger";
 
+/**
+ * A server class that configures HTTP server.
+ */
 class Server {
     public app: Hono;
 
