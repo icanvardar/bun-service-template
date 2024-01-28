@@ -1,5 +1,7 @@
-const a: Foo = {
-    bar: "test",
-};
+import Server from "./src/shared/server";
 
-console.log(a.bar);
+import { FooRoute } from "./src/routes";
+
+const server = new Server([new FooRoute()]);
+
+export default server.app;
