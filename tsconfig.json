@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
+    /* Compiling */
     "lib": ["ESNext"],
     "target": "ESNext",
     "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
     "allowJs": true,
 
     /* Bundler mode */
@@ -17,6 +16,12 @@
     "skipLibCheck": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    /* Module declaration */
+    "moduleDetection": "force",
+    "declaration": true,
+    "isolatedModules": true,
+    "esModuleInterop": true
   }
 }
