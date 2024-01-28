@@ -9,7 +9,7 @@ on:
       - "issue-*"
 
 jobs:
-  linter:
+  lint:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout the repo"
@@ -20,6 +20,7 @@ jobs:
       
       - name: "Lint the code"
         run: "npx lint-staged"
+
   build-and-start:
     runs-on: "ubuntu-latest"
     steps:
@@ -36,4 +37,4 @@ jobs:
         run: "bun run build"
 
       - name: "Start the project"
-        run: "bun run start"
+        run: "bun run ./out/index.js"
