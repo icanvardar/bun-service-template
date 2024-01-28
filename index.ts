@@ -1,1 +1,5 @@
-console.log("Hello via Bun!");
+const a: Foo = {
+    bar: "test",
+};
+
+console.log(a.bar);
