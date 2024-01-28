@@ -7,7 +7,7 @@ const server = new Server([new FooRoute()]);
 
 if (configs.env == "ci") {
     logger.info("CI successfully completed!");
-    process.exit(1);
+    process.exit(0);
 }
 
 export default server.app;
