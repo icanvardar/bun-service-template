@@ -16,7 +16,8 @@
         "eslint-plugin-node": "^11.1.0",
         "husky": "^9.0.6",
         "lint-staged": "^15.2.0",
-        "prettier": "^3.2.4"
+        "prettier": "^3.2.4",
+        "tsoa": "^6.0.1"
     },
     "peerDependencies": {
         "typescript": "^5.0.0"
@@ -43,7 +44,6 @@
     "dependencies": {
         "@hono/swagger-ui": "^0.2.1",
         "hono": "^3.12.8",
-        "tsoa": "^6.0.1",
         "winston": "^3.11.0",
         "zod": "^3.22.4"
     }

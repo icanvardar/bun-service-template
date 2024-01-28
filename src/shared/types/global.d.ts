@@ -7,4 +7,9 @@ declare global {
         basePath: string;
         router: Hono;
     }
+
+    interface AuthPayload {
+        name: string;
+        surname: string;
+    }
 }

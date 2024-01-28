@@ -3,15 +3,13 @@ import { secureHeaders } from "hono/secure-headers";
 import { cors } from "hono/cors";
 import { prettyJSON } from "hono/pretty-json";
 import { logger as honoLogger } from "hono/logger";
+import { swaggerUI } from "@hono/swagger-ui";
 
 import { configs } from "@config";
 import { StatusCode } from "@constants";
+import swaggerDefinitions from "@docs/swagger.json";
 
 import logger from "./logger";
-
-import { swaggerUI } from "@hono/swagger-ui";
-
-import swaggerDefinitions from "../../docs/swagger.json";
 
 /**
  * A server class that configures HTTP server.

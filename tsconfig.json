@@ -30,6 +30,7 @@
             "@config": ["./config"],
             "@constants": ["./src/constants"],
             "@controllers": ["./src/controllers"],
+            "@docs/*": ["./docs/*"],
             "@middlewares": ["./src/middlewares"],
             "@routes": ["./src/routes"],
             "@services": ["./src/services"],
