@@ -57,4 +57,4 @@ jobs:
         run: "bun install"
 
       - name: "Test project"
-        run: "bun test"
+        run: "bun run test"
