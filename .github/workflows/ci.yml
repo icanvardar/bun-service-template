@@ -1,4 +1,4 @@
-name: Service Template CI
+name: Bun Service Template CI
 
 on:
   push:
@@ -19,9 +19,10 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-      - uses: npx lint-staged
+      - uses: oven-sh/setup-bun@v1 # Setup bun
         with:
             bun-version: latest # Use latest bun version
+      - run: npx lint-staged
   build-and-start:
     runs-on: ubuntu-latest
     steps:
