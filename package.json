@@ -1,6 +1,11 @@
 {
-    "name": "dapp-service-template",
+    "name": "bun-service-template",
     "module": "index.ts",
+    "author": {
+        "name": "Can Vardar",
+        "url": "https://github.com/ismailcanvardar",
+        "email": "ismailcanvardar@gmail.com"
+    },
     "type": "module",
     "devDependencies": {
         "@babel/eslint-parser": "^7.23.9",
