@@ -6,7 +6,7 @@ import logger from "@shared/logger";
 /* -------------------------------------------------------------------------- */
 /*                            SERVER INITIALIZATION                           */
 /* -------------------------------------------------------------------------- */
-const server = new Server([new FooRoute()]);
+const server = Server.getInstance([new FooRoute()]);
 
 /* -------------------------------------------------------------------------- */
 /*                                CI OPERATION                                */

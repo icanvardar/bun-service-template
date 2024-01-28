@@ -14,16 +14,30 @@ import logger from "./logger";
  */
 class Server {
     public app: Hono;
+    private static instance: Server;
 
     /**
      * Only accepts routes which are derived from BaseRoute class
      * @param routes indicates that array of route classes
      */
-    constructor(routes: IBaseRoute[]) {
+    private constructor(routes: IBaseRoute[]) {
         this.app = new Hono().basePath(configs.basePath);
 
         this.initializeMiddlewares();
         this.initializeRoutes(routes);
+    }
+
+    /**
+     *
+     * @param routes indicates that array of route classes
+     * @returns
+     */
+    public static getInstance(routes: IBaseRoute[]): Server {
+        if (!Server.instance) {
+            Server.instance = new Server(routes);
+        }
+
+        return Server.instance;
     }
 
     /**
