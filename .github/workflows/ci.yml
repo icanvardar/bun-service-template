@@ -1,5 +1,8 @@
 name: "CI"
 
+env:
+  NODE_ENV: "ci"
+
 on:
   workflow_dispatch:
   pull_request:
@@ -37,4 +40,4 @@ jobs:
         run: "bun run build"
 
       - name: "Start the project"
-        run: "bun run ./out/index.js"
+        run: "bun run start"
