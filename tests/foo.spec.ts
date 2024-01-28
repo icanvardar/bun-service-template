@@ -1,15 +1,16 @@
-import { expect } from "chai";
+import { expect, test, describe } from "bun:test";
+
 import Server from "@shared/server";
 import { FooRoute } from "@routes";
-import StatusCode from "../src/constants/status-code";
+import { StatusCode } from "@constants";
 
-describe("GET /foo", () => {
-    it("should return hello world", async () => {
-        const server = new Server([new FooRoute()]);
+describe.only("Test FooRoute", () => {
+    const server = new Server([new FooRoute()]);
 
+    test("should return success GET /foo", async () => {
         const res = await server.app.request("/foo");
 
-        expect(res.status).equal(StatusCode.Ok);
-        expect(await res.text()).equal("Hello world!");
+        expect(res.status).toEqual(StatusCode.Ok);
+        expect(await res.text()).toEqual("Hello world!");
     });
 });
