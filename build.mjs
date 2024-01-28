@@ -6,7 +6,6 @@ const result = await Bun.build({
     plugins: [copyDeclarationFiles()],
     target: "bun",
     splitting: true,
-    naming: "files/[dir]/[name]-[hash].[ext]",
     root: ".",
     sourcemap: "external"
 });
