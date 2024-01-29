@@ -22,7 +22,7 @@
             "get": {
                 "operationId": "Foo",
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "Created",
                         "content": {
                             "application/json": {
@@ -40,7 +40,7 @@
     },
     "servers": [
         {
-            "url": "/api"
+            "url": "/"
         }
     ]
 }

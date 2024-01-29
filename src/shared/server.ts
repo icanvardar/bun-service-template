@@ -69,7 +69,10 @@ class Server {
             return c.json(swaggerDefinitions);
         });
 
-        this.app.get("/ui", swaggerUI({ url: "/api/doc" }));
+        this.app.get(
+            "/ui",
+            swaggerUI({ url: configs.basePath ? configs.basePath + "/doc" : "/doc" }),
+        );
     }
 
     /**
