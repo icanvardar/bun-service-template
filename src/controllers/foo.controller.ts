@@ -3,7 +3,8 @@
 /* -------------------------------------------------------------------------- */
 
 import { FooService } from "@services";
-import { Controller, Get, Route, SuccessResponse } from "tsoa";
+import { Controller, Get, Route, SuccessResponse, Response } from "tsoa";
+import StatusCode from "../constants/status-code";
 
 const service = new FooService();
 
@@ -17,8 +18,9 @@ class Foo extends Controller {
      * @param c indicates server context
      * @returns response to client
      */
-    @SuccessResponse("201", "Created")
+    @SuccessResponse(StatusCode.Ok, "Created")
     @Get("/")
+    @Response(StatusCode.Ok, "foo", "Hello world!")
     async foo(): Promise<string> {
         return await service.foo();
     }
