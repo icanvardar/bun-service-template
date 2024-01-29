@@ -55,14 +55,14 @@ class Server {
                 xFrameOptions: "deny",
                 xContentTypeOptions: "nosniff",
                 strictTransportSecurity: "max-age=63072000; includeSubDomains; preload",
-                xXssProtection: "1; mode=block",
-            }),
+                xXssProtection: "1; mode=block"
+            })
         );
         this.app.use(
             "*",
             honoLogger((message: string, ...rest: string[]) => {
                 logger.info(`${message} ${rest.toString()}`);
-            }),
+            })
         );
 
         this.app.get("/doc", (c) => {
@@ -71,7 +71,7 @@ class Server {
 
         this.app.get(
             "/ui",
-            swaggerUI({ url: configs.basePath ? configs.basePath + "/doc" : "/doc" }),
+            swaggerUI({ url: configs.basePath ? configs.basePath + "/doc" : "/doc" })
         );
     }
 
