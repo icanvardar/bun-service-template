@@ -3,12 +3,11 @@
     "module": "index.ts",
     "author": {
         "name": "Can Vardar",
-        "url": "https://github.com/ismailcanvardar",
+        "url": "https://github.com/icanvardar",
         "email": "ismailcanvardar@gmail.com"
     },
     "type": "module",
     "devDependencies": {
-        "@babel/eslint-parser": "^7.23.9",
         "@types/bun": "latest",
         "@typescript-eslint/eslint-plugin": "^6.19.1",
         "copyfiles": "^2.4.1",
