@@ -70,9 +70,89 @@ Default configurations can be found in these files, which you can adjust as you 
 
 ### GitHub Actions
 
-This template includes pre-configured GitHub Actions. It automatically runs linting and testing for your contracts whenever there's a push or pull request targeting the `main` and `issue-*` branches.
+This template includes pre-configured GitHub Actions. It automatically runs linting and testing for your project whenever there's a push or pull request targeting the `main` and `issue-*` branches.
 
 You have the flexibility to customize the CI script by editing the file [.github/workflows/ci.yml](./.github/workflows/ci.yml).
+
+## Writing Tests
+
+If you wish to write a new test, you can create files with extensions `.test.ts`, `.spec.ts`, or `.t.ts` under the `tests` directory located at the root of the project. You can write tests following the syntax of the [Jest](https://jestjs.io/) library. However, optionally, you can also use [Chai.js](https://www.chaijs.com/) and [Mocha.js](https://mochajs.org/) to write your tests, but for this, you'll need to [install](https://mochajs.org/#getting-started) the libraries according to your customized setup beforehand.
+
+To run tests, simply execute the command bun run test. If you want to generate test coverage, you should run `bun run coverage`.
+
+When conducting tests, the template automatically sets the ***NODE_ENV*** value to ***"test"***, allowing the compiler to read values from the `.env.test` file. Please make sure to conduct your tests by modifying the ```.env.test``` file accordingly.
+
+This template includes an example test file [./tests/foo.spec.ts](./tests/foo.spec.ts).
+
+## Usage
+
+Here is a list of the most commonly used commands.
+
+### Build
+
+Build the project:
+
+```sh
+$ bun run build
+```
+
+### Clean
+
+Delete bun.lockb file, node_modules and build folder.
+
+```sh
+$ bun run clean
+```
+
+### Start Development
+
+Start the project as development mode:
+
+```sh
+$ bun run start:dev
+```
+or for watch mode
+```sh
+$ bun run start:watch
+```
+
+### Coverage
+
+Generate coverage report:
+
+```sh
+$ bun run coverage
+```
+
+### Format
+
+Format the project files:
+
+```sh
+$ bun run format
+```
+
+### Lint
+
+Lint the project:
+
+```sh
+$ bun run lint
+```
+
+### Test
+
+Run the tests:
+
+```sh
+$ bun run test
+```
+
+Generate test coverage and its result:
+
+```sh
+$ bun run coverage
+```
 
 ## License
 
