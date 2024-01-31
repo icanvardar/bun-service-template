@@ -6,6 +6,7 @@
 [license-badge]: https://camo.githubusercontent.com/92ef5e7ebc8632fef4862d243dda949198df87928b72df01444fc213163a7e53/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f496c65726961796f2f6d61726b646f776e2d6261646765733f7374796c653d666f722d7468652d6261646765
 [bun]: https://github.com/oven-sh/bun
 [bun-badge]: https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white
+[tsoa]: https://github.com/lukeautry/tsoa
 
 A pre-configured http server template that works with Bun.
 
@@ -13,7 +14,7 @@ A pre-configured http server template that works with Bun.
 
 - [hono](https://github.com/honojs/hono): web framework that is foundation of this template
 - [husky](https://github.com/typicode/husky): commit checker that is being used with eslint and prettier in this project
-- [tsoa](https://github.com/lukeautry/tsoa): helper that generates swagger definitions out of declarations in controllers
+- [tsoa][tsoa]: helper that generates swagger definitions out of declarations in controllers
 - [prettier](https://github.com/prettier/prettier): code formatter for files that have extensions of ts, js and json files
 - [winston](https://github.com/winstonjs/winston): a customizable logger for general usage
 - [zod](https://github.com/colinhacks/zod): a schema validator
@@ -96,6 +97,14 @@ For example, when creating a `start` script:
 This assigns different `NODE_ENV` values for different scenarios and automatically loads the `.env` file.
 
 In conclusion, by using this structure, you can seamlessly switch between different configurations when running your project in different environments (development, production, test), making it easier to manage.
+
+### Base Path Exaplained
+
+You can add a global variable in front of your HTTP server using `basePath`. As seen in [.env.example](./.env.example), you can update the `BASE_PATH` value accordingly. For instance, if you have routes `/foo` and `/bar` on your server, and you're accessing them as `localhost:3000/foo` and `localhost:3000/bar`, you can add a base path to prefix all your routes.
+
+For example, if you set the base path to `/api`, your routes would become `localhost:3000/api/foo` and `localhost:3000/api/bar`.
+
+If your project includes a base path and you want to generate Swagger using [tsoa](tsoa), you need to specify it like this: `bun run generate:swagger --basePath /api`. Otherwise, your Swagger page won't display your route names correctly.
 
 ## Writing Tests
 
