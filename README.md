@@ -98,7 +98,15 @@ This assigns different `NODE_ENV` values for different scenarios and automatical
 
 In conclusion, by using this structure, you can seamlessly switch between different configurations when running your project in different environments (development, production, test), making it easier to manage.
 
-### Base Path Exaplained
+### OpenAPI Document & Swagger UI Explained
+
+You can use this template to create an OpenAPI document with [tsoa](tsoa) and easily present it using Swagger UI. All you need to do is to configure your controllers using [tsoa decorators](https://tsoa-community.github.io/docs/examples.html) to generate the controller logic in a way that will create the OpenAPI document.
+
+Once you've completed the decorators, you can use the `bun run generate:swagger` command to overwrite the Swagger definitions in the file named [./docs/swagger.json](./docs/swagger.json). After that, all you need to do is run the server. You can access Swagger UI via the `/ui` route as specified in `./src/shared/server.ts` on line [72](https://github.com/icanvardar/bun-service-template/blob/84bb309de9365c15cfed83f4b3fa4ecdac7457ab/src/shared/server.ts#L72).
+
+This approach makes it simple to generate and serve Swagger documentation for your API, providing an easy-to-use interface for exploring your API endpoints.
+
+### Base Path Explained
 
 You can add a global variable in front of your HTTP server using `basePath`. As seen in [.env.example](./.env.example), you can update the `BASE_PATH` value accordingly. For instance, if you have routes `/foo` and `/bar` on your server, and you're accessing them as `localhost:3000/foo` and `localhost:3000/bar`, you can add a base path to prefix all your routes.
 
