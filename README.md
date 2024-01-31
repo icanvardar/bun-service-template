@@ -74,6 +74,29 @@ This template includes pre-configured GitHub Actions. It automatically runs lint
 
 You have the flexibility to customize the CI script by editing the file [.github/workflows/ci.yml](./.github/workflows/ci.yml).
 
+### Environments Explained
+
+Most Node.js-based projects use this kind of structure to manage different configurations for different environments. Bun enables automatic application of different settings in scenarios such as development, production, testing, and CI.
+
+Firstly, you can define default configurations by creating a `.env.example` file in the project root directory. Then, you can create files for each environment like `.env.development`, `.env.production`, `.env.test`, where you specify the specific settings required for each environment.
+
+Additionally, you can configure your project to automatically pull settings from the `.env` folder if the `NODE_ENV` value is empty. This can be used to check environment variables at the start of the project and load the appropriate `.env` file.
+
+For example, when creating a `start` script:
+
+```json
+"scripts": {
+    "start": "export NODE_ENV=production && bun run ./out/index.js",
+    "start:dev": "export NODE_ENV=development && bun index.ts",
+    "start:watch": "export NODE_ENV=development && bun --watch index.ts",
+    "test": "export NODE_ENV=test && bun test"
+},
+```
+
+This assigns different `NODE_ENV` values for different scenarios and automatically loads the `.env` file.
+
+In conclusion, by using this structure, you can seamlessly switch between different configurations when running your project in different environments (development, production, test), making it easier to manage.
+
 ## Writing Tests
 
 If you wish to write a new test, you can create files with extensions `.test.ts`, `.spec.ts`, or `.t.ts` under the `tests` directory located at the root of the project. You can write tests following the syntax of the [Jest](https://jestjs.io/) library. However, optionally, you can also use [Chai.js](https://www.chaijs.com/) and [Mocha.js](https://mochajs.org/) to write your tests, but for this, you'll need to [install](https://mochajs.org/#getting-started) the libraries according to your customized setup beforehand.
