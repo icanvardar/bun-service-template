@@ -3,12 +3,11 @@
     "module": "index.ts",
     "author": {
         "name": "Can Vardar",
-        "url": "https://github.com/ismailcanvardar",
+        "url": "https://github.com/icanvardar",
         "email": "ismailcanvardar@gmail.com"
     },
     "type": "module",
     "devDependencies": {
-        "@babel/eslint-parser": "^7.23.9",
         "@types/bun": "latest",
         "@typescript-eslint/eslint-plugin": "^6.19.1",
         "copyfiles": "^2.4.1",
@@ -28,10 +27,13 @@
         "start:dev": "export NODE_ENV=development && bun index.ts",
         "start:watch": "export NODE_ENV=development && bun --watch index.ts",
         "test": "export NODE_ENV=test && bun test",
+        "coverage": "export NODE_ENV=test && bun test --coverage",
         "build": "bun run build.mjs",
         "clean": "rm -rf ./out ./node_modules bun.lockb",
         "prepare": "husky",
-        "generate:swagger": "bun run tsoa spec"
+        "generate:swagger": "bun run tsoa spec",
+        "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+        "lint": "eslint --quiet --fix"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [

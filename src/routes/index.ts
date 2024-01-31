@@ -1,3 +1,3 @@
-import Foo from "./foo.router";
+import Foo from "./foo.route";
 
 export { Foo as FooRoute };
