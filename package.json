@@ -31,7 +31,9 @@
         "build": "bun run build.mjs",
         "clean": "rm -rf ./out ./node_modules bun.lockb",
         "prepare": "husky",
-        "generate:swagger": "bun run tsoa spec"
+        "generate:swagger": "bun run tsoa spec",
+        "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+        "lint": "eslint --quiet --fix"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
