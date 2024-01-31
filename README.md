@@ -6,6 +6,7 @@
 [license-badge]: https://camo.githubusercontent.com/92ef5e7ebc8632fef4862d243dda949198df87928b72df01444fc213163a7e53/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f496c65726961796f2f6d61726b646f776e2d6261646765733f7374796c653d666f722d7468652d6261646765
 [bun]: https://github.com/oven-sh/bun
 [bun-badge]: https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white
+[tsoa]: https://github.com/lukeautry/tsoa
 
 A pre-configured http server template that works with Bun.
 
@@ -13,7 +14,7 @@ A pre-configured http server template that works with Bun.
 
 - [hono](https://github.com/honojs/hono): web framework that is foundation of this template
 - [husky](https://github.com/typicode/husky): commit checker that is being used with eslint and prettier in this project
-- [tsoa](https://github.com/lukeautry/tsoa): helper that generates swagger definitions out of declarations in controllers
+- [tsoa][tsoa]: helper that generates swagger definitions out of declarations in controllers
 - [prettier](https://github.com/prettier/prettier): code formatter for files that have extensions of ts, js and json files
 - [winston](https://github.com/winstonjs/winston): a customizable logger for general usage
 - [zod](https://github.com/colinhacks/zod): a schema validator
@@ -73,6 +74,45 @@ Default configurations can be found in these files, which you can adjust as you 
 This template includes pre-configured GitHub Actions. It automatically runs linting and testing for your project whenever there's a push or pull request targeting the `main` and `issue-*` branches.
 
 You have the flexibility to customize the CI script by editing the file [.github/workflows/ci.yml](./.github/workflows/ci.yml).
+
+### Environments Explained
+
+Most Node.js-based projects use this kind of structure to manage different configurations for different environments. Bun enables automatic application of different settings in scenarios such as development, production, testing, and CI.
+
+Firstly, you can define default configurations by creating a `.env.example` file in the project root directory. Then, you can create files for each environment like `.env.development`, `.env.production`, `.env.test`, where you specify the specific settings required for each environment.
+
+Additionally, you can configure your project to automatically pull settings from the `.env` folder if the `NODE_ENV` value is empty. This can be used to check environment variables at the start of the project and load the appropriate `.env` file.
+
+For example, when creating a `start` script:
+
+```json
+"scripts": {
+    "start": "export NODE_ENV=production && bun run ./out/index.js",
+    "start:dev": "export NODE_ENV=development && bun index.ts",
+    "start:watch": "export NODE_ENV=development && bun --watch index.ts",
+    "test": "export NODE_ENV=test && bun test"
+},
+```
+
+This assigns different `NODE_ENV` values for different scenarios and automatically loads the `.env` file.
+
+In conclusion, by using this structure, you can seamlessly switch between different configurations when running your project in different environments (development, production, test), making it easier to manage.
+
+### OpenAPI Document & Swagger UI Explained
+
+You can use this template to create an OpenAPI document with [tsoa](tsoa) and easily present it using Swagger UI. All you need to do is to configure your controllers using [tsoa decorators](https://tsoa-community.github.io/docs/examples.html) to generate the controller logic in a way that will create the OpenAPI document.
+
+Once you've completed the decorators, you can use the `bun run generate:swagger` command to overwrite the Swagger definitions in the file named [./docs/swagger.json](./docs/swagger.json). After that, all you need to do is run the server. You can access Swagger UI via the `/ui` route as specified in `./src/shared/server.ts` on line [72](https://github.com/icanvardar/bun-service-template/blob/84bb309de9365c15cfed83f4b3fa4ecdac7457ab/src/shared/server.ts#L72).
+
+This approach makes it simple to generate and serve Swagger documentation for your API, providing an easy-to-use interface for exploring your API endpoints.
+
+### Base Path Explained
+
+You can add a global variable in front of your HTTP server using `basePath`. As seen in [.env.example](./.env.example), you can update the `BASE_PATH` value accordingly. For instance, if you have routes `/foo` and `/bar` on your server, and you're accessing them as `localhost:3000/foo` and `localhost:3000/bar`, you can add a base path to prefix all your routes.
+
+For example, if you set the base path to `/api`, your routes would become `localhost:3000/api/foo` and `localhost:3000/api/bar`.
+
+If your project includes a base path and you want to generate Swagger using [tsoa](tsoa), you need to specify it like this: `bun run generate:swagger --basePath /api`. Otherwise, your Swagger page won't display your route names correctly.
 
 ## Writing Tests
 
